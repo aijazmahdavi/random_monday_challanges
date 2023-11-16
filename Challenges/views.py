@@ -1,13 +1,16 @@
-from django.shortcuts import render
 import random
 from django.http import HttpResponse
-
+from django.utils import timezone
 # Create your views here.
+
+# Global Variables
+this_month = timezone.now().month
+this_day = timezone.now().day
 
 
 # List of Challenges
 
-list_of_challanges = [
+list_of_challenges = [
     "Learn and practice a new foreign word or phrase every day",
     "Write a short 100-word story daily",
     "Organize and clean up your email inbox",
@@ -76,11 +79,40 @@ list_of_months = [
     "December"
 ]
 
+list_of_days = [
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+    "Sunday"
+]
+
+# random challenge picker
+pick_random_challenge = random.choice(list_of_challenges)
+concatenation_random_challenge = f"<h1>{pick_random_challenge}</(h1>"
 
 # A random Challenge
 def random_challenge(request):
-    pick_random_challange = random.choice(list_of_challanges)
-    conactination_random_challange = f"<h1>{pick_random_challange}</(h1>"
-    return HttpResponse(conactination_random_challange)
+    return HttpResponse(concatenation_random_challenge)
+
+# this day
+def random_challenge_current_day(request):
+      return HttpResponse(concatenation_random_challenge)
+
+# this Month
+def random_challange_current_month(request):
+      return HttpResponse(concatenation_random_challenge)
+# Random Daily Challenge
+def random_daily_challenge(request):
+        concatenation_random_daily_challenge = f"<h1>{pick_random_challenge}</h1>"
+        return HttpResponse(concatenation_random_daily_challenge)
+
 
 # Random Challenge for Month
+def random_monthly_challenge(request, month):
+    for month in list_of_months:
+        concatenation_random_monthly_challenge = f"<h1>{pick_random_challenge}</(h1>"
+        return HttpResponse(concatenation_random_monthly_challenge)
+
