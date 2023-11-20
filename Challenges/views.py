@@ -116,3 +116,4 @@ def random_monthly_challenge(request, month):
         concatenation_random_monthly_challenge = f"<h1>{pick_random_challenge}</(h1>"
         return HttpResponse(concatenation_random_monthly_challenge)
 
+
